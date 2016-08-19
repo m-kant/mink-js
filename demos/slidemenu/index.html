@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+		<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+		<!-- third-part libs -->
+		<script   src="https://code.jquery.com/jquery-2.2.3.min.js" ></script>
+
+		<!-- mk libs -->
+		<script charset='UTF-8' src='../../src/js/mk.slidemenu.js'></script>
+		<script charset='UTF-8' src='../../src/js/mk.utils.arrays.js'></script>
+		<script charset='UTF-8' src='../../src/js/mk.utils.dom.js'></script>
+
+		<link rel="stylesheet" href="../../build/css/mk.css">
+
+
+		<title>mk.slidemenu Demo</title>
+	</head>
+
+	<body style="padding:20px;">
+		<h1>mk.slidemenu Demo</h1>
+
+
+			<ul id='slidetreeEl'>
+				<li><a onclick='mk.slidemenu.gointo(this);'>some item</a>
+					<ul>
+						<li><a>some sub item 1</a></li>
+						<li><a>some sub item 1</a></li>
+					</ul>
+				</li>
+				<li><a>some item</a></li>
+				<li><a>some item</a>
+					<ul>
+						<li><a>some sub item 2</a></li>
+						<li><a>some sub item 2some sub item 2some sub item 2</a>
+							<ul>
+								<li><a>some sub sub item</a></li>
+								<li><a>some sub sub item</a></li>
+								<li><a>some sub sub item</a></li>
+							</ul>
+						</li>
+						<li><a>some sub item 2</a></li>
+					</ul>
+				</li>
+				<li><a>some item</a></li>
+				<li><a>some item</a>
+					<ul>
+						<li><a>some sub item 3</a></li>
+						<li><a>some sub item 3</a></li>
+						<li><a>some sub item 3</a></li>
+						<li><a>some sub item 3</a></li>
+					</ul>
+				</li>
+				<li><a>some item</a></li>
+
+			</ul>
+
+
+		<script>
+			mk.slidemenu.create(
+				slidetreeEl,
+				{
+					className:'mk-slidemenu-menu',
+					//width:'300px',
+					//height:'50%',
+					//backButtonContent:'..'
+				}
+			);
+		</script>
+
+
+	</body>
+</html>

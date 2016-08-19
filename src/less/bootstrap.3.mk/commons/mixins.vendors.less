@@ -1,0 +1,38 @@
+
+.transition(@trans){
+     -webkit-transition: @trans;
+     -moz-transition: @trans;
+     -o-transition: @trans;
+     transition: @trans;
+}
+
+.animation(@animation) {
+  -webkit-animation: @animation;
+       -o-animation: @animation;
+          animation: @animation;
+}
+
+.rotate(@degrees) {
+  -webkit-transform: rotate(@degrees);
+      -ms-transform: rotate(@degrees); // IE9 only
+       -o-transform: rotate(@degrees);
+          transform: rotate(@degrees);
+}
+
+.no-select(){
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+.grad( @gr ){
+	background-image:    -moz-linear-gradient(@gr); /* Firefox 3.6+ */
+	background-image: -webkit-linear-gradient(@gr); /* Chrome 10+, Safari 5.1+ */
+	background-image:      -o-linear-gradient(@gr); /* Opera 11.10+ */
+	background-image:     -ms-linear-gradient(@gr); /* IE10 */
+	background-image:         linear-gradient(@gr); /* CSS3 */
+}

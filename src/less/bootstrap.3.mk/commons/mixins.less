@@ -1,0 +1,26 @@
+/*
+Functions, such as different gradients, simulating glass or glossy surface.
+Author     : m.kantemirov
+*/
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
+
+.linear-grad( @color:#aaaaaa, @amplitude:10%, @direction:top ){
+	@gr: @direction, lighten(@color, @amplitude), darken(@color, @amplitude);
+	.grad(@gr);
+}
+
+.text-color(@bg-color){
+	color: contrast(@bg-color, @text-color, @alt-text-color);
+}
+.mix-to-back(@color,@weight:10%){
+	background-color: mix( @body-bg, @color, @weight );
+}
+.border-color(@bg-color){
+	background-color: darken( @bg-color, 20% );
+}
+

@@ -1,0 +1,67 @@
+<html>
+<head>
+	<script>
+
+		var t = [1,2,3,4,5,6,7,8,9,0];
+
+		cloneArray = function(arr){
+			var res = [];
+			for(var i=0; i<arr.length; i++){ res.push( arr[i] ); }
+			return res;
+		}
+
+		cloneArrayEach = function(arr){
+			var res = [];
+			arr.forEach( function(el){ res.push( el ); } )
+			return res;
+		}
+
+		interval = function(dateObj){
+			return ( new Date() ).getTime() - dateObj.getTime() ;
+		};
+		var g;
+
+		startTime = new Date();
+		for(var i=0; i<1000000; i++){
+			a = JSON.parse( JSON.stringify(t) );
+		}
+		console.log('JSON clone ',interval(startTime),a);
+
+		startTime = new Date();
+		for(var i=0; i<1000000; i++){
+			b = t.filter( function(){return true;} );
+		}
+		console.log('filter clone ',interval(startTime),b);
+
+		startTime = new Date();
+		for(var i=0; i<1000000; i++){
+			c = t.map( function(v){return v;} );
+		}
+		console.log('map clone ',interval(startTime),c);
+
+		startTime = new Date();
+		for(var i=0; i<1000000; i++){
+			d = cloneArray(t);
+		}
+		console.log('func for ',interval(startTime),d);
+
+		startTime = new Date();
+		for(var i=0; i<1000000; i++){
+			e = cloneArrayEach(t);
+		}
+		console.log('func forEach ',interval(startTime),e);
+
+		startTime = new Date();
+		for(var i=0; i<1000000; i++){
+			f=[];
+			for(var j=0; j<t.length; j++){ f.push( t[j] ); }
+		}
+		console.log('no func for ',interval(startTime),f);
+
+
+	</script>
+</head>
+<body>
+	see results in console
+</body>
+</html>

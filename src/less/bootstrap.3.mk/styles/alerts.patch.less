@@ -1,0 +1,15 @@
+
+@alert-default-bg:            @state-default-bg;
+@alert-default-text:          @state-default-text;
+@alert-default-border:        @state-default-border;
+@alert-primary-bg:            @state-primary-bg;
+@alert-primary-text:          @state-primary-text;
+@alert-primary-border:        @state-primary-border;
+
+
+.alert-default {
+  .alert-variant(@alert-default-bg; @alert-default-border; @alert-default-text);
+}
+.alert-primary {
+  .alert-variant(@alert-primary-bg; @alert-primary-border; @alert-primary-text);
+}

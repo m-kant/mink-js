@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+	<!--<script   src="https://code.jquery.com/jquery-2.2.3.min.js" ></script>-->
+	<link rel="stylesheet" href="../../build/css/mk.css">
+	<!-- mk module -->
+	<script charset='UTF-8' src='../../src/js/mk.infopane.js'></script>
+
+	<title>mk.infopane Demo</title>
+
+	<style>
+		[data-mk-filter]{border: 1px solid gray; padding: 5px; margin: 1px;}
+		.mk-filter-failed{background-color: red;display: none;}
+	</style>
+</head>
+
+<body style="padding:20px;">
+
+	<h1>mk.Infopane demo</h1>
+	<div id="infopaneEl"></div>
+	<hr />
+
+	<div>
+		text: <input id="infoText" type="text" name="text" style="min-width:500px;"/>
+		duration: <input id="infoDuration" type="text" name="duration" value="5000" style="min-width:100px;"/>
+		<label>
+			<input id="infoCloseBut" type="checkbox" name="closeBut" value="1" checked /> closeBut
+		</label>
+		<div>
+			call type:
+			<label>
+				<input type="radio" name="type" value="echo" checked /> echo
+			</label>
+			<label>
+				<input type="radio" name="type" value="ok" /> ok
+			</label>
+			<label>
+				<input type="radio" name="type" value="info" /> info
+			</label>
+			<label>
+				<input type="radio" name="type" value="warn" /> warn
+			</label>
+			<label>
+				<input type="radio" name="type" value="err" /> err
+			</label>
+		</div>
+		<div class="fiter-container"></div>
+
+		<button onclick="info();" class="btn btn-default">print message</button>
+	</div>
+
+<script>
+
+	var pane = new mk.Infopane( infopaneEl );
+
+	info = function(){
+		var txt = infoText.value || 'Something interesting happend while you working around. Wait some minutes and you will find some more interesting.';
+		var dur = Number( infoDuration.value );
+		var closeBut = Boolean(infoCloseBut.checked);
+		var callType = document.querySelector('[name=type]:checked').value;
+
+		pane[callType](txt,dur,closeBut);
+		console.log(callType,'(',txt,dur,closeBut,')');
+		console.log('count',pane.count())
+	};
+
+</script>
+
+
+</body>
+</html>

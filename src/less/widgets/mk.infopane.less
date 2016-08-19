@@ -1,0 +1,113 @@
+.infopane{
+	@color-back:	#EDEDED;
+	@color-default:	#EBEBEB;
+	@color-info:	#63A8DB;
+	@color-ok:		#B1DD37;
+	@color-warn:	#FFEFAE;
+	@color-err:		#E01919;
+	@color-text:	#000000;
+	@color-text-alt:#ffffff;
+
+	@text-size:	14px;
+	@hpad:0px;
+	@wpad:5px;
+	@lines-in-message: 2;
+	@messages-in-pane: 1;
+	@anim-duration:0.3s;
+
+	@line-height:		@text-size*1.3;
+	@message-height:	@lines-in-message*@line-height + @hpad*2; // 2 lines including padding
+	@pane-height:		@messages-in-pane*@message-height;
+
+	// ANIMATION KEYFRAMES
+	@keyframes infopane-appear{
+		0%		{max-height:0; opacity:0; padding:0; overflow:hidden;}
+		100%	{max-height:@message-height; opacity:1; overflow:hidden;}
+	}
+	@-webkit-keyframes infopane-appear{
+		0%		{max-height:0; opacity:0; padding:0; overflow:hidden;}
+		100%	{max-height:@message-height; opacity:1; overflow:hidden;}
+	}
+
+	// MIXINS
+	.colors( @color ){
+		background-color: @color;
+		color: contrast(@color,@color-text,@color-text-alt);
+	}
+	.anim(@animation){
+		-webkit-animation: @animation;
+		animation: @animation;
+	}
+	.appear(){
+		@anim: infopane-appear @anim-duration linear;
+		.anim(@anim);
+	}
+	.disappear(){
+		@anim: infopane-appear @anim-duration linear reverse forwards;
+		.anim(@anim);
+	}
+	.transition( @property ){
+		transition: @property @anim-duration linear;
+	}
+
+	// STYLES
+	background-color: @color-back;
+	color: @color-text;
+	height: @pane-height;
+	overflow: hidden;
+
+
+	.infopane-msg{
+		position: relative;
+		max-height: @message-height;
+		overflow: hidden;
+		.colors(@color-default);
+	}
+	.msg-body{
+		font-size: @text-size;
+		line-height: @line-height;
+		padding: @hpad @wpad;
+		padding-right: @text-size*1.2; // space for close button
+	}
+	.msg-close{
+		display:	block;
+		width:		@text-size;
+		height:		@text-size;
+		position:	absolute;
+		top:		@text-size*0.2;
+		right:		@text-size*0.2;
+		cursor:		pointer;
+		font-size:	@text-size;
+		line-height:@text-size;
+
+		&:after{
+			content:'\2715';
+		}
+		&:hover{
+			text-decoration:none;
+		}
+	}
+
+	.msg-appear{
+		.appear();
+	}
+
+	.msg-hide{
+		.disappear();
+	}
+
+	.msg-ok{
+		.colors(@color-ok);
+	}
+	.msg-info{
+		.colors(@color-info);
+	}
+	.msg-warn{
+		.colors(@color-warn);
+	}
+	.msg-err{
+		.colors(@color-err);
+	}
+
+
+}

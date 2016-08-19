@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+	<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+	<link rel="stylesheet" href="../../build/css/mk.css">
+	<!-- mkDrawer -->
+	<script charset='UTF-8' src='../../src/js/mk.drawer.js'></script>
+
+	<title>mk.drawer Demo</title>
+</head>
+
+<body style="padding:20px;">
+	<h1>mkDrawer demo</h1>
+	<div>
+		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+
+<!--		<div class="mk-drawer-wrapper">
+			<div class="mk-drawer-pouch">
+				<div class="mk-drawer-body">
+			a s d a s d a s d a s d a s d a s d a s d a s d a s d a s d a s d a s d a s d a s d a s d a s d a s d a s d
+				</div>
+			</div>
+			<div class="mk-drawer-trigger"></div>
+		</div>-->
+
+		<div style='height:200px; border:1px solid gray;'>
+			here is another text here is another text here is another text here is another text here is another text
+			here is another text here is another text here is another text here is another text here is another text
+			here is another text here is another text here is another text here is another text here is another text
+			<div id="drawerEl2" style="padding: 5px;margin: 0px;">
+				Here is element-attached drawer.
+			</div>
+		</div>
+
+		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+	</div>
+
+
+<!--<div style="border:1px solid red; width:300px; height:300px; position:absolute; top:200px; left:200px;"></div>-->
+
+
+	<div id="drawerEl" style="padding: 5px;margin: 0px;">
+		Here is any kind of drawer content: comments, <button>buttons</button>, <a href='#'>links</a> or menus.
+		<ul>
+			<li>item 1</li>
+			<li>item 2</li>
+			<li>item 3</li>
+			<li>item 4</li>
+			<li>item 5</li>
+		</ul>
+	</div>
+
+	<script>
+		mk.drawer.create(drawerEl,{class:'myClass',overlay:true});
+		mk.drawer.create(drawerEl2,{class:'myClass',overlay:true});
+
+	</script>
+
+
+</body>
+</html>

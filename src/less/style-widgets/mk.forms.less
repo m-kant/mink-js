@@ -1,0 +1,34 @@
+/* PSEUDO FORMS */
+
+.selectorHeader{ margin: 0px; padding: 0px; font-size: 12pt; font-weight:bold; }
+.selectorBody{}
+.selectorOption{ padding: 5px 5px 5px 35px; margin: 1px 0px; cursor: pointer;
+				 background: url(../imgs/f-radio.png) no-repeat rgba(255,255,255,0.2) 3px 50%; }
+.selectorOption.selected{ background-image: url(../imgs/f-radio-selected.png);
+	background-color: rgba(255,255,255,0.4) }
+	
+.mk-checkbox,
+.check-all,
+.check-none{
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	background: url(../imgs/mk-forms.png) no-repeat top;
+	vertical-align: middle;
+	padding: 0px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	transition: background-position 0.3s ease-out;
+	cursor: pointer;
+	background-position: 0px 0px;
+}
+.mk-checkbox.checked,
+.mk-checkbox.selected{
+	background-position: 0px -32px;
+}
+.check-none{
+	background-position: -32px -0px;
+}
+.check-all{
+	background-position: -32px -32px;
+}

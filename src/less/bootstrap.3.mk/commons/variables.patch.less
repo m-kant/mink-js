@@ -1,0 +1,25 @@
+//** Background color for `<body>`.
+@body-bg:			#fff;
+//** Global text color on `<body>`.
+@text-color:		#333;
+@alt-text-color:	#fff;
+
+@brand-default:		mix(@body-bg,@text-color,90%);
+@brand-primary:		#499fce;
+@brand-success:		#5cb85c;
+@brand-info:		#5bc0de;
+@brand-warning:		#f0ad4e;
+@brand-danger:		#d9534f;
+
+//** Border color for inputs on focus
+@input-border-focus:@brand-primary;
+
+// additional alert states
+@state-default-bg:		mix(@body-bg,@text-color,90%);
+@state-default-border:	darken(spin(@state-default-bg, -10), 5%);
+@state-default-text:	@text-color;
+
+@state-primary-bg:		mix(@body-bg,@brand-primary,90%);;
+@state-primary-border:	mix(@body-bg,@brand-primary,80%);
+@state-primary-text:	darken(@state-primary-border,50%);
+

@@ -1,0 +1,51 @@
+<html>
+<head>
+	<script>
+
+		var t = {
+			val: 10,
+			getVal: function(){ return 'num '+this.val; },
+			setVal: function(v){ this.val = 'is '+v; }
+		};
+
+		Object.defineProperty(t,'calcVal',{
+			enumerable:true,
+			get:function(){ return 'num '+this.val; },
+			set:function(v){ return 'is '+this.val; }
+		});
+
+		interval = function(dateObj){
+			return ( new Date() ).getTime() - dateObj.getTime() ;
+		};
+		var g;
+
+		startTime = new Date();
+		for(var i=0; i<1000000; i++){
+			g = t.calcVal;
+		}
+		console.log('getter ',interval(startTime));
+
+		startTime = new Date();
+		for(var i=0; i<1000000; i++){
+			g = t.getVal();
+		}
+		console.log('getVal() ',interval(startTime));
+
+		startTime = new Date();
+		for(var i=0; i<1000000; i++){
+			t.calcVal = 10000;
+		}
+		console.log('setter ',interval(startTime));
+
+		startTime = new Date();
+		for(var i=0; i<1000000; i++){
+			t.setVal(10000);
+		}
+		console.log('setVal() ',interval(startTime));
+
+	</script>
+</head>
+<body>
+	see results in console
+</body>
+</html>

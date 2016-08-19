@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+	<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+	<!-- third-part libs -->
+	<script   src="https://code.jquery.com/jquery-2.2.3.min.js" ></script>
+	<script charset='UTF-8' src='../_libs/date.format.js'></script>
+
+	<!-- MK libraries -->
+	<script charset='UTF-8' src='../../src/js/jquery.mk.databridge.js'></script>
+	<script charset='UTF-8' src='../../src/js/mk.utils.time.js'></script>
+
+	<link rel="stylesheet" href="../../build/css/mk.css">
+	<style>
+		.table td{padding: 10px;}
+		.nest{
+			width:700px;
+			border:1px solid gray;
+			display: block;
+			padding:10px;
+			border-radius: 5px;
+			margin: auto;
+			margin-bottom:20px;
+			vertical-align: top;
+		}
+	</style>
+
+	<title>jquery.mk.databridge Demo</title>
+</head>
+
+<body style="padding:20px;">
+
+	<div class='nest'>
+		<h1>jquery.mk.databridge Demo</h1>
+		<table cellpadding='10' cellspacing='10' class='table'><tr>
+				<td>
+					<form id="basicFormEl" class="alert alert-default">
+						<p>id is: <span data-name="id"></span></p>
+						<p>
+							name:
+							<input name="name" value="Commo">
+						</p>
+
+						<p>
+							choose age:
+							<select name="agegroup">
+								<option></option>
+								<option>20+</option>
+								<option>30+</option>
+								<option selected>40+</option>
+								<option>50+</option>
+							</select>
+						</p>
+
+						<p>
+							district:<br>
+							<label><input type="radio" name="district" value="upper" />upper</label>
+							<label><input type="radio" name="district" value="lower" checked />lower</label>
+							<label><input type="radio" name="district" value="middle" />middle</label>
+						</p>
+
+						<p>
+							hobby:<br>
+							<label><input type="checkbox" name="hobby" value="sports" />sports</label>
+							<label><input type="checkbox" name="hobby" value="cinema" checked />cinema</label>
+							<label><input type="checkbox" name="hobby" value="books" checked />books</label>
+						</p>
+
+						<p>
+							comment:<br>
+							<textarea name='comment' style='width:200px; height:100px;'>some comment here</textarea>
+						</p>
+
+					</form>
+				</td>
+				<td>
+					<p>
+						<button onclick="readData(basicFormEl,basicJsonEl)">read &rsaquo;</button>
+						<br><br>
+						<button onclick="setData(basicJsonEl,basicFormEl)">&lsaquo; set</button>
+					</p>
+				</td>
+				<td>
+					<textarea id='basicJsonEl' style='width:200px; height:300px;'>{
+ "id":"1122",
+ "name":"Nemo",
+ "agegroup":"30+",
+ "district":"",
+ "hobby":[
+  "sports",
+  "cinema"
+ ],
+ "comment":"some word"
+}
+					</textarea>
+				</td>
+				<td>
+
+				</td>
+		</tr></table>
+
+	</div>
+	<div class='nest'>
+
+		<h2>data mappers</h2>
+
+		<table cellpadding='10' class='table'><tr>
+				<td>
+					<form id="mapFormEl" class='alert alert-default'>
+						<p>
+							millage, km:<br />
+							<input name="millage" data-map="millageMap" value="1.3">
+						</p>
+						<p>
+							date:<br />
+							<input name="date" data-map="dateMap" value="01.05.2014">
+						</p>
+
+
+					</form>
+				</td>
+				<td>
+					<p>
+						<button onclick="readData(mapFormEl,mapJsonEl)">read &rsaquo;</button>
+						<br><br>
+						<button onclick="setData(mapJsonEl,mapFormEl)">&lsaquo; set</button>
+					</p>
+				</td>
+				<td>
+					millage in meters, <br />date as timestamp<br>
+					<textarea id='mapJsonEl' style='width:200px; height:100px;'>{"millage":1500,"date":1428494775000}</textarea>
+				</td>
+				<td>
+
+				</td>
+		</tr></table>
+
+	</div>
+	<div class='nest'>
+
+		<h2>data mappers & DOM manipulation</h2>
+
+		<table cellpadding='10' class='table'><tr>
+				<td>
+					<form id="domFormEl" class='alert alert-default'>
+						<p>
+							value 1:<br />
+							<input name="v1" data-map="rateMap" value="2">
+						</p>
+						<p>
+							value 2<br />
+							<input name="v2" data-map="rateMap" value="7">
+						</p>
+
+
+					</form>
+				</td>
+				<td>
+					<p>
+						<button onclick="readData(domFormEl,domJsonEl)">read &rsaquo;</button>
+						<br><br>
+						<button onclick="setData(domJsonEl,domFormEl)">&lsaquo; set</button>
+					</p>
+				</td>
+				<td>
+					0-3 - bad value, 4-6 - normal, 7+ good<br>
+					<textarea id='domJsonEl' style='width:200px; height:100px;'>{"v1":5,"v2":1}</textarea>
+				</td>
+				<td>
+
+				</td>
+		</tr></table>
+	</div>
+	<div class='nest'>
+
+		<h2>nested objects</h2>
+
+				<table cellpadding='10' class='table'><tr>
+				<td>
+					<form id="nestedFormEl" class='alert alert-default'>
+						<div class='alert alert-default'>
+							person <br />
+							<p>
+								person.name:<br />
+								<input name="person.name" value="Bobo">
+							</p>
+
+							person.address:<br />
+							<div class='alert alert-default'>
+								<p>
+									person[address].street<br />
+									<input name="person[address].street" value="Elm street">
+								</p>
+								<p>
+									person[address][house]<br />
+									<input name="person[address][house]" value="6">
+								</p>
+
+							</div>
+
+							person.phones<br />
+							<div class='alert alert-default'>
+								<p>
+									person.phones.0<br />
+									<input name="person.phones.0" value="222">
+								</p>
+								<p>
+									person.phones.1<br />
+									<input name="person.phones.1" value="333">
+								</p>
+
+							</div>
+
+						</div>
+
+					</form>
+				</td>
+
+				<td>
+					<p>
+						<button onclick="readData(nestedFormEl,nestedJsonEl)">read &rsaquo;</button>
+						<br><br>
+						<button onclick="setData(nestedJsonEl,nestedFormEl)">&lsaquo; set</button>
+					</p>
+				</td>
+				<td>
+					<br>
+					<textarea id='nestedJsonEl' style='width:200px; height:300px;'>
+{
+ "person":{
+  "name":"Dudu",
+  "address":{
+   "street":"Pine street",
+   "house":4
+  },
+  "phones":[
+   "999"
+  ]
+ }
+}
+					</textarea>
+				</td>
+				<td>
+
+				</td>
+		</tr></table>
+	</div>
+<script>
+	mapJsonEl.value = JSON.stringify({
+		millage:1500,
+		date: (new Date()).getTime()
+	});
+
+	$.fn.databridge.defaults = {
+		mapUndefined:	false,
+		mapNull:		false,
+		undefinedVal:	'undefined',
+		nullVal:		'null'
+	}
+
+	readData = function(source,target){
+		var data = $(source).databridge();
+		console.log('databridge READ:',data);
+		target.value = JSON.stringify(data,null,'  ');
+	};
+
+	setData = function(source,target){
+		var dataStr = source.value;
+		var data = JSON.parse(dataStr);
+
+		console.log('databridge SET:',dataStr,data);
+		$(target).databridge(data);
+	};
+
+	dateMap = function(val,mode){
+		if(mode === 'set'){
+			return (new Date(val)).format('dd.mm.yyyy');
+		}else{
+			return mk.u.makedate(val).getTime();
+		}
+	};
+
+	millageMap = function(val,mode){
+		if(mode === 'set'){
+			return val/1000;
+		}else{
+			return val*1000;
+		}
+	};
+
+	rateMap = function(val,mode){
+		if(val < 4){
+			this.style.backgroundColor = '#FCDEE6';
+		}else if(val < 7){
+			this.style.backgroundColor = '#FCFCD4';
+		}else{
+			this.style.backgroundColor = '#CEF2CE';
+		}
+		return val;
+	}
+</script>
+
+
+</body>
+</html>

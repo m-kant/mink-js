@@ -1,0 +1,64 @@
+
+// Core variables and mixins
+@import "../bootstrap.3/variables.less";
+@import "../bootstrap.3/mixins.less";
+
+// MK PATCH for variables (reassign variables)
+@import "commons/variables.patch.less";
+
+// Reset and dependencies
+@import "../bootstrap.3/normalize.less";
+// @import "../bootstrap.3/print.less";
+// @import "../bootstrap.3/glyphicons.less";
+
+// Core CSS
+@import "../bootstrap.3/scaffolding.less";
+@import "../bootstrap.3/type.less";
+// @import "../bootstrap.3/code.less";
+// @import "../bootstrap.3/grid.less";
+@import "../bootstrap.3/tables.less";
+@import "../bootstrap.3/forms.less";
+//@import "../bootstrap.3/buttons.less";
+
+// Components
+// @import "../bootstrap.3/component-animations.less";
+// @import "../bootstrap.3/dropdowns.less";
+@import "../bootstrap.3/button-groups.less";
+@import "../bootstrap.3/input-groups.less";
+// @import "../bootstrap.3/navs.less";
+// @import "../bootstrap.3/navbar.less";
+// @import "../bootstrap.3/breadcrumbs.less";
+// @import "../bootstrap.3/pagination.less";
+// @import "../bootstrap.3/pager.less";
+// @import "../bootstrap.3/labels.less";
+// @import "../bootstrap.3/badges.less";
+// @import "../bootstrap.3/jumbotron.less";
+// @import "../bootstrap.3/thumbnails.less";
+@import "../bootstrap.3/alerts.less";
+// @import "../bootstrap.3/progress-bars.less";
+// @import "../bootstrap.3/media.less";
+// @import "../bootstrap.3/list-group.less";
+// @import "../bootstrap.3/panels.less";
+// @import "../bootstrap.3/responsive-embed.less";
+// @import "../bootstrap.3/wells.less";
+// @import "../bootstrap.3/close.less";
+
+// Components w/ JavaScript
+/*// @import "../bootstrap.3/modals.less";
+// @import "../bootstrap.3/tooltip.less";
+// @import "../bootstrap.3/popovers.less";
+// @import "../bootstrap.3/carousel.less";*/
+
+// Utility classes
+// @import "../bootstrap.3/utilities.less";
+// @import "../bootstrap.3/responsive-utilities.less";
+
+// MK PATCH
+// commons
+@import "commons/mixins.less";
+@import "commons/mixins.vendors.less";
+@import "commons/common.less";
+// styles patches
+@import "styles/forms.less"; // apply styles to any inputs
+@import "styles/buttons.patch.less";
+@import "styles/alerts.patch.less"; // add alert-default and alert-primary

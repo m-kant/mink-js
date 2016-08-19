@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+	<script   src="https://code.jquery.com/jquery-2.2.3.min.js" ></script>
+	<link rel="stylesheet" href="../../build/css/mk.css">
+	<!-- mkFilter -->
+	<script charset='UTF-8' src='../../src/js/jquery.mk.filter.js'></script>
+
+	<title>mk.filter Demo</title>
+
+	<style>
+		[data-mk-filter]{border: 1px solid gray; padding: 5px; margin: 1px;}
+		.mk-filter-failed{background-color: red;display: none;}
+	</style>
+</head>
+
+<body style="padding:20px;">
+
+	<h1>mkFilter demo</h1>
+
+	<div>
+
+		<input type="text" name="filter" />
+		<div class="fiter-container"></div>
+
+		simplest appliance<br />
+		two filters  with different options on one list
+	</div>
+
+<script>
+
+	createElements(20);
+
+	$('.fiter-container').mkFilter({
+		$input: $('[name=filter]'),
+		events: true,
+	});
+
+	$('.fiter-container').on('filterPass',function(e,ex){ console.log('filterPass',e,ex); })
+	$('.fiter-container').on('filterFail',function(e,ex){ console.log('filterFail',e,ex); })
+
+	function createElements(n){
+		var str = '';
+		var id;
+		for(var i=0; i<n; i++){
+
+			id = rndEL()+intRnd(1000,9999);
+			str += "<div data-mk-filter='"+id+"'>Element "+id+"</div>";
+		}
+		$('.fiter-container').html(str);
+	}
+
+	function rnd(min, max) {
+	   return Math.random() * (max - min) + min;
+	};
+
+	function intRnd(min, max) {
+	   return Math.round( rnd(min, max) );
+	};
+
+	function rndEL(){
+		var s = 'abcdefghiklmnopqrstuvwxyz';
+		var i = intRnd(0,s.length-1);
+		return s[i];
+	};
+
+
+</script>
+
+
+</body>
+</html>
