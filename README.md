@@ -1,11 +1,6 @@
 mink-js
 =======
-Java Script library containing UI widgets and data manipulating functions, intended to use in mobile web apps or sites.
-
-Basic ideas used in project is: Loosely coupled architecture is excellent - modules must be as indpendent as possible. Only CSS animation can be used. With API and usability better to be standart, than to think different.
-
-Functions wich uses DOM elements as a point of origin are formatted as jQuery plugins, others can be used as framework-agnostic.
-
+It is a Java Script library, containing UI widgets and data manipulating functions, intended to use in mobile web apps or sites.
 All widgets are independent and can be used regardless of all others, or can be combined in any way.
 
 jquery.mk.pagex
@@ -52,5 +47,11 @@ mk.utils**
 ----------
 Different utils used in some widgets, and usefull in practice.
 
+Some genral ideas in project
+----------------------------
+* Loosely coupled architecture is excellent - modules must be as indpendent as possible. 
+* Only CSS animation can be used. 
+* Better to be standart, than to think different with API and usability.
 
+Functions wich uses DOM elements as a point of origin are formatted as jQuery plugins, others can be used as framework-agnostic.
 
