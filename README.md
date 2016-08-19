@@ -2,9 +2,11 @@ mink-js
 =======
 Java Script library containing UI widgets and data manipulating functions, intended to use in mobile web apps or sites.
 
-Some widgets formatted as jQuery plugins, some of them can be used as framework-agnostic.
+Basic ideas used in project is: Loosely coupled architecture is excellent - modules must be as indpendent as possible. Only CSS animation can be used. With API and usability better to be standart, than to think different.
 
-All widgets are independent and can be used regardless of all others.
+Functions wich uses DOM elements as a point of origin are formatted as jQuery plugins, others can be used as framework-agnostic.
+
+All widgets are independent and can be used regardless of all others, or can be combined in any way.
 
 jquery.mk.pagex
 ---------------
@@ -32,11 +34,11 @@ Way to add multilingual support into existing html markup. Uses XML property to 
 
 mk.mixin.events
 ---------------
-Mixin adding ability to emit events to any object.
+Mixing into any object ability to emit events.
 
 mk.mixin.keep
 -------------
-Mixin adding ability to store objects in local storage.
+Mixing into any object ability to store data objects.
 
 mk.simplerender
 ---------------
