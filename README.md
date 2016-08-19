@@ -45,13 +45,13 @@ Framework-agnostic mobile-style sliding lists.
 
 mk.utils**
 ----------
-Different utils used in some widgets, and usefull in practice.
+Different utilities used in some widgets, and useful in practice.
 
-Some genral ideas in project
+Some general ideas in project
 ----------------------------
-* Loosely coupled architecture is excellent - modules must be as indpendent as possible. 
+* Loosely coupled architecture is excellent - modules must be as independent as possible. 
 * Only CSS animation can be used. 
-* Better to be standart, than to think different with API and usability.
+* Better to be standard, than to think different with API and usability.
 
-Functions wich uses DOM elements as a point of origin are formatted as jQuery plugins, others can be used as framework-agnostic.
+Functions which uses DOM elements as a point of origin are formatted as jQuery plugins, others can be used as framework-agnostic.
 
