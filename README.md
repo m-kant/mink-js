@@ -1,7 +1,9 @@
 mink-js
 =======
 It is a Java Script library, containing UI widgets and data manipulating functions, intended to use in mobile web apps or sites.
-All widgets are independent and can be used regardless of all others, or can be combined in any way.
+All widgets are independent and can be used regardless of all others, or can be combined in any way. Only CSS animation were used. 
+
+[Demos](http://mkant.ru/mink-js-demos/)
 
 jquery.mk.pagex
 ---------------
@@ -47,11 +49,7 @@ mk.utils**
 ----------
 Different utilities used in some widgets, and useful in practice.
 
-Some general ideas in project
-----------------------------
-* Loosely coupled architecture is excellent - modules must be as independent as possible. 
-* Only CSS animation can be used. 
-* Better to be standard, than to think different with API and usability.
-
+Some notes
+-----------------------------
 Functions which uses DOM elements as a point of origin are formatted as jQuery plugins, others can be used as framework-agnostic.
 

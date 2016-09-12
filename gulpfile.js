@@ -1,3 +1,4 @@
+/* mink-js */
 var gulp		= require('gulp');
 var del			= require('del');
 var newer		= require('gulp-newer');
@@ -7,6 +8,8 @@ var cleanCSS	= require('gulp-clean-css');
 var autoprefixer= require('gulp-autoprefixer');
 var uglify		= require('gulp-uglify');
 var rename		= require('gulp-rename');
+var tap			= require('gulp-tap');
+var sftp		= require('gulp-sftp');
 
 var jsFiles = [
 	'src/js/mk.utils.js',
@@ -40,6 +43,7 @@ gulp.task('js', function() {
 		.pipe(gulp.dest('build/'))
 		.pipe(rename('mk.min.js'))
 		.pipe(uglify())
+		.pipe(gulp.dest('demos/_libs/'))
 		.pipe(gulp.dest('build/'));
 });
 
@@ -51,6 +55,7 @@ gulp.task('styles', function() {
 		.pipe(gulp.dest('build/css/'))
 		.pipe(rename('mk.min.css'))
 		.pipe(cleanCSS())
+		.pipe(gulp.dest('demos/_libs/'))
 		.pipe(gulp.dest('build/css/'));
 });
 
@@ -63,3 +68,44 @@ gulp.task('media', function() {
 
 gulp.task('build', gulp.parallel( 'js', 'styles', 'media' ));
 gulp.task('clean_build', gulp.series('clean','build'));
+
+
+gulp.task('taper', function(){
+	return gulp.src("src/**/*.{coffee,js}")
+    .pipe(tap(function(file) {
+        if (path.extname(file.path) === '.coffee') {
+            return t.through(coffee, []);
+        }
+    }))
+    .pipe(gulp.dest('build'));
+});
+
+gulp.task('demo-index', function(){
+	var fs = require('fs');
+	var demosDir = './demos/';
+	var dirList = fs.readdirSync(demosDir);
+	var menuStr = '<h2>mink-JS demos:</h2><ul>';
+
+	dirList.forEach(function(dir){
+		var isDir = fs.statSync(demosDir+dir).isDirectory();
+		if(!isDir)return;
+		if('_' === dir.substr(0,1)) return;
+		menuStr += '<li><a href="'+dir+'">'+dir+'</a></li>';
+	});
+
+	var fileToWrite = fs.openSync(demosDir+'index.html','w');
+	fs.writeFileSync(fileToWrite, menuStr );
+
+	return gulp.src("src/noname.*"); // to finish gulp task
+});
+
+gulp.task('deploy-mkant-mink-demos', function () {
+	return gulp.src(['./demos/**', '!*/_*'])
+		.pipe(sftp({
+			host: 'www.rimsntires.com',
+			authFile: '../../mkant/.ftppass',
+			port: 22,
+			auth: 'rims',
+			remotePath:'/home/mkant/public_html/mink-js-demos/' // No slash at the end!
+		}));
+});

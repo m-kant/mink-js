@@ -2554,7 +2554,7 @@ fieldset[disabled] .btn {
 }
 .infopane .msg-info {
   background-color: #63A8DB;
-  color: #ffffff;
+  color: #000000;
 }
 .infopane .msg-warn {
   background-color: #FFEFAE;
@@ -2599,7 +2599,7 @@ fieldset[disabled] .btn {
 }
 .mkmodal-title {
   background: #499fce;
-  color: #fff;
+  color: #333;
   text-align: left;
   min-height: 32px;
   font-size: 16px;
@@ -2623,7 +2623,7 @@ fieldset[disabled] .btn {
 }
 .mkmodal-control-close:after {
   content: '\2715';
-  color: #fff;
+  color: #333;
 }
 .mkmodal-control-close:hover {
   text-decoration: none;

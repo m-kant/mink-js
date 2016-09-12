@@ -7,72 +7,136 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
+	<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+	<!-- third-part libs -->
 	<script   src="https://code.jquery.com/jquery-2.2.3.min.js" ></script>
-	<link rel="stylesheet" href="../../build/css/mk.css">
-	<!-- mkFilter -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script charset='UTF-8' src='../_libs/date.format.js'></script>
+
+	<!-- MK libraries -->
+	<link rel="stylesheet" href="../_libs/mk.min.css">
+	<script charset='UTF-8' src='../_libs/mk.min.js'></script>
+
+	<!-- debug -->
 	<script charset='UTF-8' src='../../src/js/jquery.mk.filter.js'></script>
 
-	<title>mk.filter Demo</title>
+	<!-- demo -->
+	<script src="components/demo.js"></script>
+	<link rel="stylesheet" href="components/demo.css">
 
-	<style>
-		[data-mk-filter]{border: 1px solid gray; padding: 5px; margin: 1px;}
-		.mk-filter-failed{background-color: red;display: none;}
-	</style>
+	<title>$.mkFilter Demo</title>
 </head>
 
-<body style="padding:20px;">
+<body>
+<div class="container">
+<div id="topNavEl"></div>
+<script>$(topNavEl).load('../!components/top-nav.html')</script>
 
-	<h1>mkFilter demo</h1>
+
+	<h1>jQuery.mkFilter Demo</h1>
+	<hr />
+
+	<div id="basicUsageEl">
+		<h2>Basic usage</h2>
+		<div class="list"></div>
+	</div>
+
+	<div id="existingInputsEl">
+		<h2>Use existing multiply inputs</h2>
+		<p>You can use already existing input or selector. And even use multiply inputs at once. Intersect logic will be used in this case.</p>
+		<div class="input-group">
+			<input type="text" name="some-input" class="form-control" placeholder="Type to filtrate" size='10' />
+			<select name='some-select' class="form-control">
+				<option value=''>select something</option>
+				<option>Dostoyevsky</option>
+				<option>Dreiser</option>
+				<option>Steinbeck</option>
+			</select>
+		</div>
+		<div class="list"></div>
+	</div>
+
+
+	<div id="eventsEl">
+		<h2>Events and extensions</h2>
+		<div class="log-wrapper">events log:<div class="log"></div></div>
+		<div class="list"></div>
+	</div>
 
 	<div>
-
-		<input type="text" name="filter" />
-		<div class="fiter-container"></div>
-
-		simplest appliance<br />
-		two filters  with different options on one list
+		<h2>HTML used in example</h2>
+		<pre id="listCodeEl"></pre>
 	</div>
+
 
 <script>
 
-	createElements(20);
+	$.get('components/list.html',function(listHTML){
+		$('.list').html(listHTML);
+		listCodeEl.innerText = listHTML;
 
-	$('.fiter-container').mkFilter({
-		$input: $('[name=filter]'),
-		events: true,
-	});
+		activate('basicUsage');
+		activate('existingInputs');
+		activate('events');
+	})
 
-	$('.fiter-container').on('filterPass',function(e,ex){ console.log('filterPass',e,ex); })
-	$('.fiter-container').on('filterFail',function(e,ex){ console.log('filterFail',e,ex); })
-
-	function createElements(n){
-		var str = '';
-		var id;
-		for(var i=0; i<n; i++){
-
-			id = rndEL()+intRnd(1000,9999);
-			str += "<div data-mk-filter='"+id+"'>Element "+id+"</div>";
-		}
-		$('.fiter-container').html(str);
+	function activate(blockName){
+		var $container = $('#'+blockName+'El');
+		window[blockName].call(null,$container.find('.list'));
+		$container.append( opener( getFunctionBody(window[blockName]) ) );
 	}
 
-	function rnd(min, max) {
-	   return Math.random() * (max - min) + min;
+	function opener(content,title){
+		if(!title)title = 'open code...';
+		$opener = $('<div class="opener"><div>');
+		$('<h4 class="opener-trigger">'+title+'</h4>')
+			.appendTo($opener)
+			.click(function(e){$(e.target).parent().toggleClass('opened');});
+
+		return $opener.append('<pre class="opener-body">'+content+'</pre>');
+	}
+
+	function getFunctionBody(func){
+		// get array of strings
+		var rows = func.toString().split(/[\n\r]+/);
+		rows.pop();// remove last row (close string)
+		rows.shift();// remove first row (declaration string)
+		// remove margin (tab) at the start of line
+		rows = rows.map(function(row){return row.replace(/^\t+/,''); });
+		return rows.join("\n");
 	};
 
-	function intRnd(min, max) {
-	   return Math.round( rnd(min, max) );
+	function basicUsage($list){
+		$list.mkFilter();
+	};
+	function existingInputs($list){
+		$list
+		  .mkFilter({
+		    $input: $('[name="some-input"]'),
+		  })
+		  .mkFilter({
+		   $input: $('[name="some-select"]'),
+		   triggerName:'change'
+		  });
+	};
+	function events($list){
+		$list.mkFilter({ events: true, })
+		  .on('mkFilterChange',function(e,d){
+		   var str = '<'+'div>';
+		   str += 'filter: '+e.mkFilter.string;
+		   str += ', passed: '+e.mkFilter.passed.length;
+		   str += ', failed: '+e.mkFilter.failed.length;
+		   str += '<'+'/div>';
+		   $(str).prependTo('#eventsEl .log');
+		  });
 	};
 
-	function rndEL(){
-		var s = 'abcdefghiklmnopqrstuvwxyz';
-		var i = intRnd(0,s.length-1);
-		return s[i];
-	};
+
 
 
 </script>
-
 
 </body>
 </html>

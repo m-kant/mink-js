@@ -7,9 +7,19 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-	<!--<script   src="https://code.jquery.com/jquery-2.2.3.min.js" ></script>-->
-	<link rel="stylesheet" href="../../build/css/mk.css">
-	<!-- mk module -->
+	<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+	<!-- third-part libs -->
+	<script   src="https://code.jquery.com/jquery-2.2.3.min.js" ></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script charset='UTF-8' src='../_libs/date.format.js'></script>
+
+	<!-- MK libraries -->
+	<link rel="stylesheet" href="../_libs/mk.min.css">
+	<script charset='UTF-8' src='../_libs/mk.min.js'></script>
+
+	<!-- debug -->
 	<script charset='UTF-8' src='../../src/js/mk.infopane.js'></script>
 
 	<title>mk.infopane Demo</title>
@@ -20,9 +30,26 @@
 	</style>
 </head>
 
-<body style="padding:20px;">
+<body>
+
+<div class="container">
+<div id="topNavEl"></div>
+<script>$(topNavEl).load('../!components/top-nav.html')</script>
 
 	<h1>mk.Infopane demo</h1>
+	<pre>
+var pane = new mk.Infopane( document.getElementById('paneElement') );
+pane.echo(text, duration, addCloseButton);
+pane.ok  (text, duration, addCloseButton);
+pane.info(text, duration, addCloseButton);
+pane.warn(text, duration, addCloseButton);
+pane.err (text, duration, addCloseButton);
+</pre>
+	<div>
+		<p>text {string} text of message</p>
+		<p>duration {integer} duration of message in milliseconds, default is 3000</p>
+		<p>addCloseButton {boolean} if true - close button will be shown on message, default is true</p>
+	</div>
 	<div id="infopaneEl"></div>
 	<hr />
 
@@ -54,6 +81,7 @@
 
 		<button onclick="info();" class="btn btn-default">print message</button>
 	</div>
+</div><!-- .container -->
 
 <script>
 

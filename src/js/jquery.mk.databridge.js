@@ -1,7 +1,12 @@
 /**
  * data reader, data scanner, data applier
  * databridge
- *
+ * Usage:
+	// apply data to DOM
+	$('.selector').databridge(dataObject);
+	// read data from DOM
+	var dataObject = $('.selector').databridge();
+
  * TODO events on set get
  * TODO нужно сделать set от DOMа, а не от объекта. а то если
  * в объекте undefined то в дом ничего не ставится, а это не правильно

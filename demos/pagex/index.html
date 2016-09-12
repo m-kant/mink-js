@@ -1,14 +1,27 @@
 <!DOCTYPE html>
+<html>
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
-    <meta name="viewport"
-		  content="user-scalable=yes, initial-scale=1, maximum-scale=1.6, minimum-scale=0.25, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
-	<title>mk-ui pagex demo</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
+	<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+	<!-- third-part libs -->
 	<script   src="https://code.jquery.com/jquery-2.2.3.min.js" ></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script charset='UTF-8' src='../_libs/date.format.js'></script>
 
+	<!-- MK libraries -->
+	<link rel="stylesheet" href="../_libs/mk.min.css">
+	<script charset='UTF-8' src='../_libs/mk.min.js'></script>
+
+	<title>$.pagex Demo</title>
+
+	<!-- debug -->
 	<script charset='UTF-8' src='../../src/js/jquery.mk.pagex.js'></script>
 	<script charset='UTF-8' src='../../src/js/jquery.mk.cssanim.js'></script>
 	<link rel="stylesheet" href="../../build/css/mk.css">
@@ -20,45 +33,74 @@
 //		$.pagex.animation = null;
 
 		function bindEvents(){
-			$.pagex.on('open',function(e){alert("onOpen"); console.log('onopen',e); });
-			$.pagex.on('open','1',function(e){alert("открыта первая страница"); console.log('onopen',e); });
-			$.pagex.on('close','1',function(e){alert("ушли с первой страницы"); console.log('onopen',e); });
-			$.pagex.on('error',function(e){alert("произошла ошибка"); console.log('onerror',e); });
+			$.pagex.on('open',function(e){log("onOpen"); console.log('onopen',e); });
+			$.pagex.on('open','1',function(e){log("открыта первая страница"); console.log('onopen',e); });
+			$.pagex.on('close','1',function(e){log("ушли с первой страницы"); console.log('onopen',e); });
+			$.pagex.on('error',function(e){log("произошла ошибка"); console.log('onerror',e); });
+		}
+
+		function log(msg){
+			$(logEl).prepend('<div>'+msg+'</div>');
 		}
 
 
 	</script>
 	<style>
-		body{background-color: #e3e3e3;}
-		#pageContainer{position: relative; border:1px solid gray; height:200px; min-height: 200px;}
-		.pagex-page{}
-		li{}
-		li:hover{background-color: rgba(0,0,0,0.05); cursor: pointer;}
+		#pageContainer{position: relative; min-height: 200px;overflow: hidden;}
+		#pageContainer .pagex-page{padding:10px;}
+
 
 		#animRes{width:10px;height:10px;background-color: red;}
 	</style>
 </head>
+
+
 <body style='padding:10px;'>
+<div class="container">
+<div id="topNavEl"></div>
+<script>$(topNavEl).load('../!components/top-nav.html')</script>
 
 
-<h2>TEST pagex</h2>
-<ul>
-	<li onclick='$.pagex.open("1")'>page 1</li>
-	<li onclick='$.pagex.open("2")'>page 2</li>
-	<li onclick='$.pagex.open("3-delayed")'>page 3 delayed</li>
-	<li onclick='$.pagex.open("4-delayed-error")'>page 4 delayed error</li>
-</ul>
+<h2>$.pagex Demo</h2>
+<p>
+	Pagex is a jQuery plugin for hash routing. Pages (layouts) loads on demand
+	via ajax request, and remains in DOM for further openings. Any DOM Element,
+	including body, can be used as a page container, so you can refresh full page
+	or leave some elements static for all pages. CSS animation is used for page transitions.
+</p>
+<p>
+	Put all your page views to some folder, for example "layouts". Let's create
+	file 'main-view.html'. To open this layout you have to write this:
+</p>
+<pre>
+	$.pagex.open('layouts/main-view.html');
+</pre>
+<p>
+	To shorten and beautify you code, you can set some options:
+</p>
+<pre>
+	$.pagex.prefix = 'layouts/';
+	$.pagex.postfix = '.html';
+	$.pagex.open('main-view');
+</pre>
 
-<div><button onclick="this.disabled=true; bindEvents();">set event handlers</button></div>
-<h2>page container</h2>
-<div id='pageContainer'></div>
+<p class="btn-group">
+	<a class='btn btn-default' onclick='$.pagex.back()'><< back</a>
+	<a class='btn btn-default' onclick='$.pagex.open("1")'>page 1</a>
+	<a class='btn btn-default' onclick='$.pagex.open("2")'>page 2</a>
+	<a class='btn btn-default' onclick='$.pagex.open("3-delayed")'>page 3 delayed</a>
+	<a class='btn btn-default' onclick='$.pagex.open("4-delayed-error")'>page 4 delayed error</a>
+</p>
+<div id='pageContainer' class='alert alert-default'></div>
 
+<p>
+	<br />
+	<button class='btn btn-default' onclick="this.disabled=true; bindEvents();">set event handlers</button>
+</p>
 
-<script>
-	//$('#d1').cssanimRemove('slide-out-to-right',{duration:1,oncomplete:function(){$('#d1').html('anim complete');console.log('anim complete');}});
-	//$.pagex.open('1');
-</script>
+<div id="logEl"></div>
 
+</div><!-- .container -->
 </body>
 </html>
 
