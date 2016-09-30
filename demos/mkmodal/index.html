@@ -49,13 +49,13 @@
 
 <h2>$.mkmodal Demo</h2>
 <p>
-	mkmodal is a jQuery plugin of modal window, that uses CSS animation.
-	And can build window content with string, DOM element or file.
+	mkmodal is a jQuery plugin for modal dialog window, that uses CSS animation.
+	Dialog content can be taken from string, DOM element or file via ajax.
 </p>
 <pre>
-$.mkmodal.open(options);
-$.mkmodal.acquire(".dialog-content");
-$.mkmodal.load("dialogs/dialog.html");
+$.mkmodal.open(options); // general form
+$.mkmodal.acquire(".dialog-content"); // take content from DOM Element
+$.mkmodal.load("dialogs/dialog.html"); // load content via AJAX
 </pre>
 <h3>normal functioning</h3>
 <div class='btn-group'>

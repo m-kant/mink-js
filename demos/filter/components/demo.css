@@ -1,0 +1,37 @@
+ .list{
+    border: 1px solid #ccc;
+     padding: 5px;
+     margin: 1px;
+    border-radius: 4px;
+}
+ .list>div{
+    background-color: #eee;
+     padding: 5px;
+     margin: 1px;
+}
+ .mk-filter-failed{
+    background-color: red;
+    display: none;
+}
+ .input-group .form-control{
+     display:inline-block;
+     width: auto;
+}
+
+.opener{
+    border: 1px solid #ccc;
+    padding: 2px;
+    margin: 1px;
+    border-radius: 4px;
+}
+.opener .opener-body{
+	display: none;
+	margin:0;
+}
+.opener-trigger{
+	cursor: pointer;
+	margin:0;
+}
+.opener.opened .opener-body{
+	display: block;
+}

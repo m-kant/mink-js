@@ -1,0 +1,64 @@
+<div class='row'>
+	<div class='col-sm-5'>
+		<form id="basicFormEl" class="alert alert-default wide">
+			<p>id is: <b><span data-name="id">unknown</span></b></p>
+			<p>
+				name:
+				<input type="text" name="name" value="Commo" style='display:inline-block'>
+			</p>
+
+			<p>
+				choose age:
+				<select name="agegroup" style='display:inline-block'>
+					<option></option>
+					<option>20+</option>
+					<option>30+</option>
+					<option selected>40+</option>
+					<option>50+</option>
+				</select>
+			</p>
+
+			<p>
+				district:<br>
+				<label><input type="radio" name="district" value="upper" />upper</label>
+				<label><input type="radio" name="district" value="lower" checked />lower</label>
+				<label><input type="radio" name="district" value="middle" />middle</label>
+			</p>
+
+			<p>
+				hobby:<br>
+				<label><input type="checkbox" name="hobby" value="sports" />sports</label>
+				<label><input type="checkbox" name="hobby" value="cinema" checked />cinema</label>
+				<label><input type="checkbox" name="hobby" value="books" checked />books</label>
+			</p>
+
+			<p>
+				comment:<br>
+				<textarea class='wide' name='comment' style='height:50px;'>some comment here</textarea>
+			</p>
+
+		</form>
+	</div><!-- .col-sm-5 -->
+	<div class='col-sm-2 central-controls'>
+		<button class="btn btn-default" onclick="readData(basicFormEl,basicJsonEl)">get &rsaquo;</button>
+		<button class="btn btn-default" onclick="setData(basicJsonEl,basicFormEl)">&lsaquo; set</button>
+	</div><!-- .col-sm-2 -->
+	<div class='col-sm-5'>
+		<textarea id='basicJsonEl' class='wide' style='height:300px;'>
+{
+	"id":"1122",
+	"name":"Nemo",
+	"agegroup":"30+",
+	"district":"",
+	"hobby":[
+		"sports",
+		"cinema"
+	],
+	"comment":"some word"
+}
+		</textarea>
+	</div><!-- .col-sm-5 -->
+
+
+
+</div>
