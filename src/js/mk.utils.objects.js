@@ -95,6 +95,7 @@
 		Child.prototype.superclass = Parent.prototype;
 	};
 
+	mk.u.inherits = mk.u.extendClass;
 
 	mk.u.clone = function(obj){
 		// 'for' is much faster then 'JSON.parse( JSON.stringify(obj) )'
