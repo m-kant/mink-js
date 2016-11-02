@@ -70,14 +70,16 @@
 	 * @param {Object} target объект, в который осуществляется примесь
 	 * @param {Object} mixin объект, свойства которого нужно внедрить, может быть несколько штук */
 	mk.u.mixUniqueInto = function(target,mixin){
+		var skipped = [];
 		for(var i=1; i<arguments.length; i++){
 			mixin = arguments[i];
 			for(var k in mixin){
 				if(!mixin.hasOwnProperty(k)) continue;
-				if(target[k] !== undefined){ console.warn('Skip duplicating property '+k+' while mixing'); continue;}
+				if(target[k] !== undefined){ skipped.push(k); continue;}
 				target[k] = mixin[k];
 			}
 		}
+		if(skipped.length) console.warn('Duplicating properties were skipped while mixing: '+skipped.join(', '));
 		return target;
 	};
 
@@ -95,7 +97,6 @@
 		Child.prototype.superclass = Parent.prototype;
 	};
 
-	mk.u.inherits = mk.u.extendClass;
 
 	mk.u.clone = function(obj){
 		// 'for' is much faster then 'JSON.parse( JSON.stringify(obj) )'

@@ -52,12 +52,19 @@ mk.mixin.keep = {
 		if('undefined' === typeof key){
 			ret = this.keeped;
 			localStorage.removeItem(this.keepedKey);
+			if(this.copyKeepedToSelf){
+				for(var k in this.keeped){
+					if(!this.keeped.hasOwnProperty(k))continue;
+					delete delete this[k]
+				}
+			}
 			this.keeped = {};
 		}else{
 			if(undefined === this.keeped[key]) return undefined;
 			ret = this.keeped[key];
 			delete this.keeped[key];
 			localStorage[this.keepedKey]=JSON.stringify(this.keeped);
+			if(this.copyKeepedToSelf){ delete this[key]; }
 		}
 
 		return ret;

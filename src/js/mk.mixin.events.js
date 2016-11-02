@@ -58,6 +58,13 @@
 		* @param {object} eventData
 		*/
 		trigger: function(eventType,eventData) {
+		 // если в родительском приложении назначить строку
+		 // this.eventLogTag, то будут выводиться логи
+		 if(this.eventsLogTag){
+			var handlersCount = (this._eventHandlers && this._eventHandlers[eventType])?this._eventHandlers[eventType].length:0;
+			console.log(this.eventsLogTag+': emit '+eventType+' for '+handlersCount+' handlers');
+		 }
+
 		 if (!this._eventHandlers || !this._eventHandlers[eventType]) {
 		   return; // обработчиков для события нет
 		 }
@@ -67,6 +74,7 @@
 		 for (var i = 0; i < handlers.length; i++) {
 		   handlers[i].call(this,eventData);
 		 }
+
 
 		 return this;
 		},

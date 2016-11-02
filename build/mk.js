@@ -256,14 +256,16 @@
 	 * @param {Object} target объект, в который осуществляется примесь
 	 * @param {Object} mixin объект, свойства которого нужно внедрить, может быть несколько штук */
 	mk.u.mixUniqueInto = function(target,mixin){
+		var skipped = [];
 		for(var i=1; i<arguments.length; i++){
 			mixin = arguments[i];
 			for(var k in mixin){
 				if(!mixin.hasOwnProperty(k)) continue;
-				if(target[k] !== undefined){ console.warn('Skip duplicating property '+k+' while mixing'); continue;}
+				if(target[k] !== undefined){ skipped.push(k); continue;}
 				target[k] = mixin[k];
 			}
 		}
+		if(skipped.length) console.warn('Duplicating properties were skipped while mixing: '+skipped.join(', '));
 		return target;
 	};
 
@@ -969,12 +971,19 @@ mk.mixin.keep = {
 		if('undefined' === typeof key){
 			ret = this.keeped;
 			localStorage.removeItem(this.keepedKey);
+			if(this.copyKeepedToSelf){
+				for(var k in this.keeped){
+					if(!this.keeped.hasOwnProperty(k))continue;
+					delete delete this[k]
+				}
+			}
 			this.keeped = {};
 		}else{
 			if(undefined === this.keeped[key]) return undefined;
 			ret = this.keeped[key];
 			delete this.keeped[key];
 			localStorage[this.keepedKey]=JSON.stringify(this.keeped);
+			if(this.copyKeepedToSelf){ delete this[key]; }
 		}
 
 		return ret;
@@ -1061,6 +1070,13 @@ mk.mixin.keep.keepoff = mk.mixin.keep.keepOff;
 		* @param {object} eventData
 		*/
 		trigger: function(eventType,eventData) {
+		 // если в родительском приложении назначить строку
+		 // this.eventLogTag, то будут выводиться логи
+		 if(this.eventsLogTag){
+			var handlersCount = (this._eventHandlers && this._eventHandlers[eventType])?this._eventHandlers[eventType].length:0;
+			console.log(this.eventsLogTag+': emit '+eventType+' for '+handlersCount+' handlers');
+		 }
+
 		 if (!this._eventHandlers || !this._eventHandlers[eventType]) {
 		   return; // обработчиков для события нет
 		 }
@@ -1070,6 +1086,7 @@ mk.mixin.keep.keepoff = mk.mixin.keep.keepOff;
 		 for (var i = 0; i < handlers.length; i++) {
 		   handlers[i].call(this,eventData);
 		 }
+
 
 		 return this;
 		},
