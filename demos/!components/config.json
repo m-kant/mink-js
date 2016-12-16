@@ -1,0 +1,36 @@
+{
+
+	"baseUrl":"/mink-js/demos/",
+	"structure": [
+		{
+			"folder":".."
+		},
+		{
+			"folder":"databridge"
+		},
+		{
+			"folder":"drawer"
+		},
+		{
+			"folder":"filter"
+		},
+		{
+			"folder":"infopane"
+		},
+		{
+			"name":"modal",
+			"folder":"mkmodal"
+		},
+		{
+			"folder":"pagex"
+		},
+		{
+			"folder":"slidemenu"
+		},
+		{
+			"name":"pullfresh",
+			"folder":"mk-pullfresh"
+		}
+
+	]
+}

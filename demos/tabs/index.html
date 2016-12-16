@@ -28,66 +28,42 @@
 	<script charset='UTF-8' src='../../src/js/mk.utils.dom.js'></script>
 
 	<link rel="stylesheet" href="../../build/css/mk.css">
+	<link rel="stylesheet" href="mk.tabs.css">
 
 
-	<title>mk.slidemenu Demo</title>
+	<title>mk.tabs</title>
 </head>
 
 <body>
 <div class="container">
 <div id="topNavEl"></div>
 
+	<h1>.mk-tabs</h1>
+	<h2>tabs inside scroller</h2>
+	<div class="tabs-scroller">
+		<ul class="mk-tabs">
+		  <li><a href="databridge">databridge</a></li>
+		  <li class="active"><a href="drawer">drawer</a></li>
+		  <li><a href="filter">filter</a></li>
+		  <li><a href="infopane">infopane</a></li>
+		  <li><a href="mkmodal">modal</a></li>
+		  <li><a href="pagex">pagex</a></li>
+		  <li><a href="slidemenu">slidemenu</a></li>
+		</ul>
+	</div><!-- .tabs-scroller -->
 
-	<h1>mk.slidemenu Demo</h1>
-	<p>Converts some ul list tree into slide menu. Library agnostic. CSS animated.</p>
-	<pre>mk.slidemenu.create(listTreeElement,options);</pre>
-
-	<ul id='slidetreeEl'>
-		<li><a onclick='mk.slidemenu.gointo(this);'>item A</a>
-			<ul>
-				<li><a>sub item A1</a></li>
-				<li><a>sub item A2</a></li>
-			</ul>
-		</li>
-		<li><a>item B</a></li>
-		<li><a>item C</a>
-			<ul>
-				<li><a>sub item C1</a></li>
-				<li><a>deep sub item C2</a>
-					<ul>
-						<li><a>sub sub item C2.1</a></li>
-						<li><a>sub sub item C2.2</a></li>
-						<li><a>sub sub item C2.3</a></li>
-					</ul>
-				</li>
-				<li><a>sub item C3</a></li>
-			</ul>
-		</li>
-		<li><a>item D</a></li>
-		<li><a>item E</a>
-			<ul>
-				<li><a>sub item E1</a></li>
-				<li><a>sub item E2</a></li>
-				<li><a>sub item E3</a></li>
-				<li><a>sub item E4</a></li>
-			</ul>
-		</li>
-		<li><a>item F</a></li>
-
+	<ul class="mk-tabs w400">
+	  <li><a href="databridge">databridge</a></li>
+	  <li class="active"><a href="drawer">drawer</a></li>
+	  <li><a href="filter">filter</a></li>
+	  <li><a href="infopane">infopane</a></li>
+	  <li><a href="mkmodal">modal</a></li>
+	  <li><a href="pagex">pagex</a></li>
+	  <li><a href="slidemenu">slidemenu</a></li>
 	</ul>
 
 
-<script>
-	mk.slidemenu.create(
-		slidetreeEl,
-		{
-			className:'mk-slidemenu-menu',
-			//width:'300px',
-			//height:'50%',
-			//backButtonContent:'..'
-		}
-	);
-</script>
+
 
 </div><!-- .container -->
 </body>
