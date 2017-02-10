@@ -734,11 +734,11 @@
 		warn:true,
 
 
-		process: function(element){
-			if(!element){element = document;}
+		process: function(containerEl){
+			if(!containerEl){containerEl = document;}
 
 			if(this.scanText){
-				var texts = _getTextNodesIn(element);
+				var texts = _getTextNodesIn(containerEl);
 
 				for(var i=0; i<texts.length;i++){
 					var text = texts[i];
@@ -757,7 +757,7 @@
 			}
 
 			if(this.scanAttr){
-				var elems = element.querySelectorAll('[data-str]');
+				var elems = containerEl.querySelectorAll('[data-str]');
 				for(var j=0; j<elems.length;j++){
 					var elem = elems[j];
 					var elemAlias = elem.getAttribute('data-str');
@@ -769,6 +769,20 @@
 						elem.innerHTML = elemAlias;
 					}
 				}
+			}
+
+			// scan placeholders
+			var elements = containerEl.querySelectorAll('[placeholder]');
+			for(var i=0; i<elements.length;i++){
+				var element = elements[i];
+				var refStr = element.getAttribute('data-placeholder-str');
+				if(refStr){
+					element.placeholder = this.m( refStr );
+				}else{
+					element.setAttribute('data-placeholder-str',element.placeholder);
+					element.placeholder = this.m( element.placeholder );
+				}
+
 			}
 
 		},
