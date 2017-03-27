@@ -56,7 +56,6 @@
 
 	mk.slidemenu.create = function(listEl,options){
 		options = mk.u.merge(mk.slidemenu.defaults,options);
-
 		var wrapper = mk.u.wrap(listEl,'div',{class:'mk-slidemenu-container'});
 		if(options.className){ wrapper.className += ' '+options.className; }
 		if(options.width){ wrapper.style.width = options.width; }
